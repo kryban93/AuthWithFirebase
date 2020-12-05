@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { AuthProvider } from './contexts/AuthContext';
+import Dashboard from './views/Dashboard/Dashboard';
+import LandingView from './views/LandingView/LandingView';
+import LoginView from './views/LoginView/LoginView';
+import SignUpView from './views/SignUpView/SignUpView';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import ForgotPassword from './views/ForgotPasswordView/ForgotPassword';
+import UpdateProfileView from './views/UpdateProfileView/UpdateProfileView';
+import { DataProvider } from './contexts/DataContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <DataProvider>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={LandingView} />
+            <Route path='/login' component={LoginView} />
+            <Route path='/signUp' component={SignUpView} />
+            <Route path='/forgot-password' component={ForgotPassword} />
+            <PrivateRoute path='/dashboard' component={Dashboard} />
+            <PrivateRoute path='/update-profile' component={UpdateProfileView} />
+          </Switch>
+        </Router>
+      </DataProvider>
+    </AuthProvider>
   );
 }
 

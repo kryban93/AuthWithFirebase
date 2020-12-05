@@ -1,0 +1,32 @@
+.container {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.description {
+  font-size: 1.3em;
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.1s ease-in;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &-redirect {
+    margin: 30px;
+    font-size: 1.4em;
+    border-bottom: 2px solid blue;
+  }
+
+  &-back {
+    position: absolute;
+    bottom: 3%;
+    right: 5%;
+    font-size: 1.5em;
+  }
+}
